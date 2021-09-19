@@ -42,8 +42,8 @@ install: main.go pretest
 	$(GO) install -ldflags "$(LDFLAGS)"
 
 lint:
-	$(GO_OFF) get -u golang.org/x/lint/golint
-	golint $(PKGS)
+	$(GO_OFF) get -u github.com/mgechev/revive
+	revive -config ./.revive.toml -formatter plain $(PKGS)
 
 vet:
 	echo $(PKGS) | xargs env $(GO) vet || exit;
